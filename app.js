@@ -277,6 +277,7 @@ console.log(restaFlechaRetorno(20,10));
 todos.forEach(todo => console.log(todo.texto));
 */
 
+/*
 //Programacion orientada a objetos 
 //Constructores  - Al crear un constructor siempre se comienza con una mayuscula
 
@@ -304,9 +305,145 @@ console.log(persona1.obtenerAñosNacimiento()); //mismo resultado que la sentenc
 persona1.obtenerEdad(persona1.nacimiento); //primera funcion de flecha para obtener la edad
 persona1.nombreCompleto();
 
+//Prototipos
+//se utiliza para no tener la funciones con cada instanciad el objeto
+// por que tal vez no la necesites en todos los objetos  por eso se colocan en el prototipo / prototype
+
+//para colocar al funcion en el prototipo se realiza de la siguiente manera
+
+Persona.prototype.obtenerAñosNacimiento2 = function() {
+    return this.nacimiento.getFullYear();
+}
+
+Persona.prototype.obtenerEdad2 = nacimiento => console.log(2021 - nacimiento.getFullYear());
+
+Persona.prototype.nombreCompleto2 = function(){ console.log(`El nombre completo : ${this.nombre} ${this.apellido}`)};
+
+console.log(persona2.obtenerAñosNacimiento2());
+persona2.obtenerEdad2(persona2.nacimiento);
+persona2.nombreCompleto2();
+console.log(persona1);
 
 
+//Clases
+class Persona{
+constructor(nombre, apellido, nacimiento){
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.nacimiento =  new Date(nacimiento);
+}
 
+getAñoNacimiento(){
+return this.nacimiento.getFullYear();
+}
 
+getNombrecompleto(){
+return `${this.nombre}  ${this.apellido}`;
+}
+}
 
+//instanciacion de objetos es de la misma forma que anteriormente
+
+const persona1 = new Persona('Lisandro','Testa','4-12-1998');
+const persona2 = new Persona('Matias','Koppoto','4-30-1997');
+const persona3 = new Persona('Mine','Coral','12-09-1998');
+
+console.log(persona2.getAñoNacimiento());
+console.log(persona1);
+*/
+
+//dom
+/*
+//Selectores
+//selectores individuales
+document.getElementById('my-form'); //selecciona un elemento individual de la estructura html atravez de su id
+document.querySelector('.container'); //se puede seleccionar un elemento individual segun su id , clase ,tipo  - si existe mas de un h1 por ejemplo solo va a seleccionar el primero por que es un selector individual
+//selectores multiples
+
+console.log(document.querySelectorAll('.item')); //esto nos devuelve un NodeList que es similar a una array y se puede utilziar metodo de array en el como por ejemplo un forEach para poder recorrerlo - es el mas nuevo los siguiente son mas viejos
+console.log(document.getElementsByClassName('item'));// no hace falta el punto antes de la palabra 'item' por que solo se utilza para seleccionar varios elementos pertenecientes a una misma clase , lo que devuelve es una coleccion html (HTMLCollection) y a diferencia del metodo anterior no se peude utilizar metodos de array en esta , hay que convertirla en una array si se quieren usar metodos del array en ella
+console.log(document.getElementsByTagName('li'));//similar al anterior pero solo se utilzia con los tags
+
+//Ejemplo de recorrido
+
+const items = document.querySelectorAll('.item');
+items.forEach(item => console.log(item));
+
+//Manipulacion del dom 
+
+const ul = document.querySelector('.items');
+
+//ul.remove(); //remueve el elemento del documento
+//ul.lastElementChild.remove(); remueve el ultimo elemento del documento
+//ul.firstElementChild.textContent = 'Prueba'; //modifica el texto del priemr elemento que contiene la ul
+//ul.children[1].innerText = 'joselito'; //el metodo .children[1] selecciona e elemento que se coloce entre las llaves y el inner text es similar a textContent
+ul.lastElementChild.innerHTML = '<h1>Holas<h1>'; //sirve para agregar elementos html de manera dinamica dentro de la pagina web
+
+//tambien podemos modificar el estilo de los elementos atravez de js
+const btn = document.querySelector('.btn');
+btn.style.background = 'red';
+
+//esto es muy util conjunto con  addEventListener que permite que cambie las propiedades de un objeto cuando se realiza alguna accion sobre el mismo por ejemplo
+//la forma que funciona el AddEventListener es de la siguiente manera * primero se agrega  el evento que se queire utilizar  * segundo la funcion que queres que se ejecute cuando se de el evento anterior
+btn.addEventListener('click', (e) => {
+    e.preventDefault();//esta funcion previene que se realze el envio del formulario ya que es un elemento submit y permite utilizarlo como un boton plano sin funcionalidades extras 
+   // console.log('click');
+    // console.log(e.target);
+    document.querySelector('#my-form').style.background = '#ccc' //se utiliza para poder  cambiar el color de fondo del formulario en esta caso cuando se hace click en el boton
+    document.querySelector('body').classList.add('bg-dark');//lo que estamos haciendo aca primero es seleccionar al body con el queryselector y luego agregar una clase con el mmetodo calssList.add la cual se llama 'bg-dark' y la tenemos localizada en nuestra hoja de estilos.css o styles.css
+    document.querySelector('.items').lastElementChild.innerHTML = '<h1> Click del boton </h1>';
+});
+//existen muchos diferentes eventos como pro ejemplo el mouseover que se activa cuando pasamos el mouse por ensima del elemento
+btn.addEventListener('mouseover', (e) => {
+    e.preventDefault();//esta funcion previene que se realze el envio del formulario ya que es un elemento submit y permite utilizarlo como un boton plano sin funcionalidades extras 
+   // console.log('click');
+    // console.log(e.target);
+    document.querySelector('#my-form').style.background = 'grey' //se utiliza para poder  cambiar el color de fondo del formulario en esta caso cuando se hace click en el boton
+    document.querySelector('body').classList.add('bg-dark');//lo que estamos haciendo aca primero es seleccionar al body con el queryselector y luego agregar una clase con el mmetodo calssList.add la cual se llama 'bg-dark' y la tenemos localizada en nuestra hoja de estilos.css o styles.css
+    document.querySelector('.items').lastElementChild.innerHTML = '<h1> Mouse encima </h1>';
+});
+
+//o por ejemplo el mouseout que se activa cuando sacamos el mouse de encima del elemento con el cual estamos trabajando
+btn.addEventListener('mouseout', (e) => {
+    document.querySelector('.items').lastElementChild.innerHTML = '<h1> Mouse Fuera del elemento </h1>';
+});
+//existen muchisimos mas eventos que se pueden utilizar se puede ampliar el conocimiento de estos checkeando la documentacion
+*/
+
+/*
+//creacion de una funcionalidad
+
+const formulario = document.querySelector('#my-form');
+const nombreInput = document.querySelector('#name');
+const emailInput = document.querySelector('#email');
+const mensaje = document.querySelector('.msg');
+const listaUsuarios = document.querySelector('#users');
+//no hace falta que coloquemos la funcion en la segunda propieda que se le pasa a la funcon addEvenetListener , se puede poner el nombre y definir antes  o despues dicha funcion
+formulario.addEventListener('submit', onSubmit);
+
+function onSubmit(e){
+    e.preventDefault();
+   
+    if (nombreInput.value === '' || emailInput.value === '') 
+    {
+         mensaje.classList.add('error') 
+         mensaje.innerHTML = 'Porfavor llene todos los campos'
+        //podemos lograr que el estilo que le agregamos al mensaje de error se vaya despues de un determinado tiempo usando la siguiente funcion :
+        //SetTimeout -- *como primer parametro se indica una funcion(puede ser de flecha)* como segundo para metro se indica el tiempo en milisegundos que tiene que pasar atnes que se ejecute la funcion
+         setTimeout(() => mensaje.remove(),3000); //utilizamos la funcion remove para poder sacarle la clase al mensaje que le habiamos asignado anteriormente llamado error luego de 3 segundos
+    }
+    else{
+        //pasos para agregar un nuevo usuario a la lista:
+        const li = document.createElement('li'); //creamos un elemento li para luego agregarlo a nuestra ul de usuarios
+       //lo que hacemos a continuacion es ingresar dentro del li  un textnode que contenga el nombre del usuario y su email
+        li.appendChild(document.createTextNode(`Nombre: ${nombreInput.value} - Email: ${emailInput.value}`))
+    //utilizamos la funcion appendchild que agrega algo dentor de ese elemento con el elemento lista de usuarios que contiene el ul de user que tenemos definido en el documento html   
+        listaUsuarios.appendChild(li);
+    // como ultima medida luego de ingresar los nuevos usuarios tenemos que limpiar los campos
+    nombreInput.value = '';
+    emailInput.value = '';
+    }    
+
+};
+*/
 

@@ -1,17 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Java Script Basics</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>JS Repaso</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+      <h1>JS Repaso General</h1>
+    </header>
 
+    <section class="container">
+      <form id="my-form">
+        <h1>Agregar usuario</h1>
+        <div class="msg"></div>
+        <div>
+          <label for="name">Nombre:</label>
+          <input type="text" id="name">
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="text" id="email">
+        </div>
+        <input class="btn" type="submit" value="Enviar">
+      </form>
 
+      <ul id="users"></ul>
 
-    <script src="app.js">
-    </script>
-</body>
+       <!-- <ul class="items">
+        <li class="item">Item 1</li>
+        <li class="item">Item 2</li>
+        <li class="item">Item 3</li>
+      </ul>  -->
+    </section>
+    
+
+    <script src="app.js"></script>
+  </body>
 </html>
